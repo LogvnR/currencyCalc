@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Currency Calculator</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Judson:wght@400;700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <img id="logo" src="LRCrownWhite.png" alt="">
+    <div class="blurContainer"></div>
+    <div class="mainContainer">
+        <div class="titleContainer">
+            <h1>Currency Calculator</h1>
+        </div>
+        <div class="convertionContainer">
+            <form action="" class="mainForm">
+                <section class="fromConvert">
+                    <h3 class="fromConvertText">Please select a currency to convert from, and an amount</h3>
+                    <div class="subToConvertContainer">
+                        <label id="fromOptionsLabel" for="from">From:</label>
+                        <select name="from" id="fromOptions">
+                            <option value="NONE">Choose An Option</option>
+                            <option value="AUD">Australia - AUD</option>
+                            <option value="BRL">Brazil - BRL</option>
+                            <option value="CAD">Canada - CAD</option>
+                            <option value="CHF">Switzerland - CHF</option>
+                            <option value="CNY">China - CNY</option>
+                            <option value="EUR">European Union - EUR</option>
+                            <option value="GBP">United Kingdom - GBP</option>
+                            <option value="HKD">Hong Kong - HKD</option>
+                            <option value="JPY">Japan - JPY</option>
+                            <option value="KRW">South Korea - KRW</option>
+                            <option value="MXN">Mexico - MXN</option>
+                            <option value="PAB">Panama - PAB</option>
+                            <option value="RUB">Russia - RUB</option>
+                            <option value="USD">United States - USD</option>
+                        </select>
+                    </div>
+                    <div class="inputContainer">
+                        <label id="fromInputLabel" for="fromInput">Value:</label>
+                        <input type="number" name="fromInput" id="fromInput" step=".01" placeholder="00.00">
+                    </div>
+                </section>
+                <section class="toConvert">
+                    <h3 class="toConvertText">Please select a currency to convert into</h3>
+                    <div class="subToConvertContainer">
+                        <label id="toOptionsLabel" for="to">To:</label>
+                        <select name="to" id="toOptions">
+                            <option value="NONE">Choose An Option</option>
+                            <option value="AUD">Australia - AUD</option>
+                            <option value="BRL">Brazil - BRL</option>
+                            <option value="CAD">Canada - CAD</option>
+                            <option value="CHF">Switzerland - CHF</option>
+                            <option value="CNY">China - CNY</option>
+                            <option value="EUR">European Union - EUR</option>
+                            <option value="GBP">United Kingdom - GBP</option>
+                            <option value="HKD">Hong Kong - HKD</option>
+                            <option value="JPY">Japan - JPY</option>
+                            <option value="KRW">South Korea - KRW</option>
+                            <option value="MXN">Mexico - MXN</option>
+                            <option value="PAB">Panama - PAB</option>
+                            <option value="RUB">Russia - RUB</option>
+                            <option value="USD">United States - USD</option>
+                        </select>
+                    </div>
+                </section>
+                <div class="btnContainer">
+                    <button class="submitBtn">Submit</button>
+                </div>
+            </form>
+
+        </div>
+        <div class="resultsContainer">
+            <sections class="results">
+                <p class="resultsAnswer"><span class="fromResultsText"></span> <span class="resultsText">Results</span>
+                    <span class="toResultsText">
+                    </span>
+                </p>
+            </sections>
+            <button class="reset">Reset</button>
+        </div>
+    </div>
+    <script src="app.js"></script>
+</body>
+
+</html>
