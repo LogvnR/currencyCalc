@@ -13,12 +13,30 @@ function round(value, decimals) {
   return Number(Math.round(value + 'e' + decimals) + 'e-' + decimals);
 }
 // ===== Style Changes =====
-function errorStyle(input) {
-  input.style.border = '2px solid Red';
+function errorStyle(input1, input2, input3) {
+  input1.style.border = '2px solid Red';
+  input2.style.border = '2px solid Red';
+  input3.style.border = '2px solid Red';
 }
 
-function normalStyle(input) {
-  input.style.border = '1px solid Black';
+function normalStyle(input1, input2, input3) {
+  input1.style.border = '1px solid Black';
+  input2.style.border = '1px solid Black';
+  input3.style.border = '1px solid Black';
+}
+
+// ===== Form Resets =====
+
+function userInputReset(input1, input2, input3) {
+  input1.value = 'NONE';
+  input2.value = '';
+  input3.value = 'NONE';
+}
+
+function resultsReset(input1, input2, input3) {
+  input1.innerText = '';
+  input2.innerText = 'Results';
+  input3.innerText = '';
 }
 
 // ===== Main User Submit =====
@@ -32,9 +50,7 @@ mainForm.addEventListener('submit', async function (e) {
     toOption.value === 'NONE'
   ) {
     result.innerText = 'Please Fill Out Options';
-    errorStyle(fromOption);
-    errorStyle(toOption);
-    errorStyle(valInput);
+    errorStyle(fromOption, toOption, valInput);
   } else {
     const aquiredCurrency = await requestCurrency(
       fromOption.value,
@@ -47,9 +63,7 @@ mainForm.addEventListener('submit', async function (e) {
       toOption.value
     }`;
 
-    normalStyle(fromOption);
-    normalStyle(toOption);
-    normalStyle(valInput);
+    normalStyle(fromOption, toOption, valInput);
     // ===== Console Logs
     console.log(`From: ${fromOption.value}`);
     console.log(`To: ${toOption.value}`);
@@ -82,13 +96,7 @@ const requestCurrency = async (from, to) => {
 
 // ===== Reset Button =====
 reset.addEventListener('click', function () {
-  fromOption.value = 'NONE';
-  toOption.value = 'NONE';
-  valInput.value = '';
-  fromResult.innerText = '';
-  result.innerText = 'Results';
-  toResult.innerText = '';
-  normalStyle(fromOption);
-  normalStyle(toOption);
-  normalStyle(valInput);
+  userInputReset(fromOption, valInput, toOption);
+  resultsReset(fromResult, result, toResult);
+  normalStyle(fromOption, toOption, valInput);
 });
