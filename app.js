@@ -72,7 +72,7 @@ const resultFormat = (aqCurrency, inputVal) => {
 const requestCurrency = async (from, to) => {
   try {
     const res = await axios.get(
-      `https://v6.exchangerate-api.com/v6/b0bd94d1da01efa433b37b7b/pair/${from}/${to}`
+      `https://v6.exchangerate-api.com/v6/${logvn}/pair/${from}/${to}`
     );
     return res.data.conversion_rate;
   } catch (e) {
