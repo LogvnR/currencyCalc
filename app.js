@@ -8,10 +8,20 @@ const toResult = document.querySelector('.toResultsText');
 const valInput = document.querySelector('#fromInput');
 const reset = document.querySelector('.reset');
 
+// ===== Rounding Function =====
 function round(value, decimals) {
   return Number(Math.round(value + 'e' + decimals) + 'e-' + decimals);
 }
+// ===== Style Changes =====
+function errorStyle(input) {
+  input.style.border = '2px solid Red';
+}
 
+function normalStyle(input) {
+  input.style.border = '1px solid Black';
+}
+
+// ===== Main User Submit =====
 mainForm.addEventListener('submit', async function (e) {
   e.preventDefault();
 
@@ -22,29 +32,28 @@ mainForm.addEventListener('submit', async function (e) {
     toOption.value === 'NONE'
   ) {
     result.innerText = 'Please Fill Out Options';
-    fromOption.style.border = '2px solid Red';
-    toOption.style.border = '2px solid Red';
-    valInput.style.border = '2px solid Red';
+    errorStyle(fromOption);
+    errorStyle(toOption);
+    errorStyle(valInput);
   } else {
     const aquiredCurrency = await requestCurrency(
       fromOption.value,
       toOption.value
     );
-    // const fromTxt
-    // const toTxt =
+
     fromResult.textContent = `${input} ${fromOption.value}`;
     result.innerText = 'is';
     toResult.textContent = `${resultFormat(aquiredCurrency, input)} ${
       toOption.value
     }`;
 
-    fromOption.style.border = '1px solid Black';
-    toOption.style.border = '1px solid Black';
-    valInput.style.border = '1px solid Black';
+    normalStyle(fromOption);
+    normalStyle(toOption);
+    normalStyle(valInput);
     // ===== Console Logs
-    console.log(fromOption.value);
-    console.log(toOption.value);
-    console.log(input);
+    console.log(`From: ${fromOption.value}`);
+    console.log(`To: ${toOption.value}`);
+    console.log(`Input Value: ${input}`);
     console.log(
       `${input} ${fromOption.value} is ${resultFormat(
         aquiredCurrency,
@@ -54,10 +63,12 @@ mainForm.addEventListener('submit', async function (e) {
   }
 });
 
+// ===== Data Rounding =====
 const resultFormat = (aqCurrency, inputVal) => {
   return round(aqCurrency * inputVal, 2);
 };
 
+// ===== API Call =====
 const requestCurrency = async (from, to) => {
   try {
     const res = await axios.get(
@@ -69,6 +80,7 @@ const requestCurrency = async (from, to) => {
   }
 };
 
+// ===== Reset Button =====
 reset.addEventListener('click', function () {
   fromOption.value = 'NONE';
   toOption.value = 'NONE';
@@ -76,7 +88,7 @@ reset.addEventListener('click', function () {
   fromResult.innerText = '';
   result.innerText = 'Results';
   toResult.innerText = '';
-  fromOption.style.border = '1px solid Black';
-  toOption.style.border = '1px solid Black';
-  valInput.style.border = '1px solid Black';
+  normalStyle(fromOption);
+  normalStyle(toOption);
+  normalStyle(valInput);
 });
